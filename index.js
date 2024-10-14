@@ -22,7 +22,7 @@ if(process.env.NODE_ENV === 'production'){
     })
 }
 
-app.get('/api',(req,res)=>{
+app.get('/',(req,res)=>{
     res.send('API is working');
 })
 const MONGO_URI="mongodb+srv://collins:collins77@uzima.ruqlk48.mongodb.net/?retryWrites=true&w=majority&appName=uzima"
