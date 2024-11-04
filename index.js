@@ -35,11 +35,12 @@ const io = new Server(server, {
 
 
 
-if(process.env.NODE_ENV === 'production'){
-    require('dotenv').config({
-        path:'./.env'
-    })
-}
+
+if (process.env.NODE_ENV !== "PRODUCTION") {
+    require("dotenv").config({
+      path: "./.env",
+    });
+  }
 
 app.get('/',(req,res)=>{
     res.send('API is working');
@@ -50,8 +51,8 @@ const port=5000
 
 
 // environment varaibales
-const PORT = process.env.PORT || port;
-const dbconnection = process.env.MONGO_URI|| MONGO_URI;
+const PORT = process.env.PORT;
+const dbconnection = process.env.MONGO_URI;
 
 // console.log("connecton string",dbconnection)
 
