@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../model/User");
+const User = require("../models/User");
 const { authenticator } = require("otplib");
 const speakeasy = require("speakeasy");
 
