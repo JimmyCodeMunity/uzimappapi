@@ -58,7 +58,7 @@ const updatedUserPlan = async (userId, planId) => {
       userId,
       { planId: planId },
       { new: true }
-    );
+    ).populate("planId","name");
     console.log("user updated", user);
     // res.send(user)
   } catch (error) {

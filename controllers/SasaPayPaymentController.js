@@ -2,6 +2,12 @@ const { default: axios } = require("axios");
 const express = require("express");
 const mongoose = require("mongoose");
 const User = require("../models/User");
+
+if(process.env.NODE_ENV !== 'PRODUCTION'){
+  require('dotenv').config({
+      path:'../.env'
+  })
+}
 // const { getPlanbyId } = require('./planController');
 
 // subscription
@@ -11,20 +17,22 @@ const User = require("../models/User");
 // const clientId = "wB0A457offQBTSlyGonIHPFZDC9Sg8E7qLysRirL";
 
 //live
-const clientId = "2chC11B1tMZ76U7N7FaxQbh6KKwVnWCwqe8m12hf";
+const clientId = process.env.sasapay_client_id;
+const clientSecret = process.env.sasapay_client_secret;
+console.log("clientid", clientId, "secret",clientSecret);
+
 
 //local
 // const clientSecret = "X8uYzrhwAQ7S3VG6V0ltwDaRqnDGXTXbfJ3Lymfu3jf6wzzOmucHkAVEQBRPn9FhEfrdqIu2994VYE6AGBsf9kVHo7Za65iZ990KdhmfQQBHejUmFg7MHsXkrt7vNU4M";
 
 //live
-const clientSecret =
-  "GKG58ZUgLe9h6D8fY9rBkwsddqK5yWgRComjdHqYWRZHJ0hEfLdIpklCPm8ZPQjyN5qiTRlvRVWIzMtAI3XYiFDHGhNwibb0S3MJOUx2Acb5VhZgObj1PjIdHcKBfpvM";
-const tokenUrl =
-  "https://sandbox.sasapay.app/api/v1/auth/token/?grant_type=client_credentials";
+// const clientSecret =
+//   "";
+const tokenUrl =process.env.sasapay_tokenurl;
+console.log("tokenUrl: " + tokenUrl);
 const confirmUrl = "https://7626-197-232-60-144.ngrok-free.app/confirm";
 // const callbackurl = "https://a57b-197-232-60-144.ngrok-free.app/api/payment/c2b-callback-results";
-const callbackurl =
-  "https://a56f-105-163-158-160.ngrok-free.app/api/v1/payments/sasapay/c2b-callback-results";
+const callbackurl = process.env.sasapay_callbackurl;
 
 // Convert the credentials
 const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString(
@@ -159,6 +167,7 @@ const requestPayment = async (req, res, userSocketMap, io) => {
     }
 
     console.log("Formatted Phone Number:", phoneNumber);
+    console.log("details", paymentrequestdetails);
 
     // Validate your body to ensure properties exist
     if (

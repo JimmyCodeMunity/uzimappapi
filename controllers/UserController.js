@@ -89,7 +89,7 @@ const getUserData = async (req, res) => {
     const user = await jwt.verify(token, jwttoken);
     const useremail = user.email;
     // console.log("useremail",useremail);
-    const userData = await User.findOne({ email: useremail });
+    const userData = await User.findOne({ email: useremail }).populate("planId","name");
 
     if (!userData) {
       return res.status(400).json({ message: "user not found" });

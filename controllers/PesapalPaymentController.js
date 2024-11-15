@@ -210,15 +210,15 @@ const submitOrderRequest = async (req, res,userSocketMap,io) => {
   const orderDetails = {
     id: getRandomNumber(), // Replace with your transaction ID
     currency: "KES", // Replace with your currency code
-    amount: "1.00", // Replace with your amount
+    amount: amount.toString(), // Replace with your amount
     description: "Order payment", // Replace with your description
     email: useremail, // Replace with customer's email
     phone: "254112163919", // Replace with customer's phone number
     countryCode: "KE", // Replace with customer's country code
-    firstName: "John", // Replace with customer's first name
-    middleName: "Doe", // Replace with customer's middle name
-    lastName: "Smith", // Replace with customer's last name
-    addressLine1: "123 Street", // Replace with address line 1
+    firstName: "", // Replace with customer's first name
+    middleName: "", // Replace with customer's middle name
+    lastName: "", // Replace with customer's last name
+    addressLine1: "", // Replace with address line 1
     addressLine2: "", // Replace with address line 2 (if any)
     city: "Nairobi", // Replace with customer's city
     state: "", // Replace with customer's state (if any)

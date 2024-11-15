@@ -101,6 +101,7 @@ io.on("connection", (socket) => {
       return;
     }
     // return
+    io.to(receiverId).emit("payment-completed");
     
     await updatedUserPlan(userId,planId);
   });
