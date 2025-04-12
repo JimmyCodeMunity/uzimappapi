@@ -1,5 +1,5 @@
 const express = require('express');
-const { getToken, registerIPN, handleCallback, submitOrderRequest } = require('../controllers/PesapalPaymentController');
+const { getToken, registerIPN, handleCallback, submitOrderRequest, checkTransactionStatus } = require('../controllers/PesapalPaymentController');
 
 // const router = express.Router();
 
@@ -26,6 +26,7 @@ module.exports = (userSocketMap,io) => {
     router.post('/registeripn', (req, res) => registerIPN(req, res, userSocketMap,io));
     router.get('/callback', (req, res) => handleCallback(req, res, userSocketMap,io));
     router.post('/requestpayment', (req, res) => submitOrderRequest(req, res, userSocketMap,io));
+    router.post('/checkpayment', (req, res) => checkTransactionStatus(req, res, userSocketMap,io));
 
     return router;
 };
